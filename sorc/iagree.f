@@ -1,12 +1,12 @@
       REAL FUNCTION iagree(r, x, n)
-C     Compute the index of agreement between two vectors.
-C     Robert Grumbine 7 April 1994.
-C      LAST MODIFIED 8 April 1994
+!     Compute the index of agreement between two vectors.
+!     Robert Grumbine 7 April 1994.
+!      LAST MODIFIED 8 April 1994
 
       IMPLICIT none
 
       INTEGER n
-      REAL r(n), x(n)
+      REAL r(0:n), x(0:n)
 
       REAL rbar, sr2, sx2, srx, spx
       INTEGER i

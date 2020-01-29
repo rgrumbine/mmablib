@@ -45,6 +45,7 @@ class parameters {
      static const float cp_air               ;
      static const float latent_fusion        ;
      static const float latent_vaporization  ;
+     static const float latent_sublimation   ;
      static const float molecular_mass_air   ;
      static const float molecular_mass_water ;
      static const float molecular_ratio      ;
@@ -99,14 +100,17 @@ const float  parameters::nmtokm = 1.85318;
 
 // Physical Parameters:
 const float parameters::universal_gas_constant = 8.31436; //  J/mol/K 
-const float parameters::stefan_boltzman        = 5.67E-8; //  W/m^2/K^4
-const float parameters::cp_air                 = 1004.0;
+const float parameters::stefan_boltzman        = 5.67051E-8; //  W/m^2/K^4
+const float parameters::cp_air                 = 1004.6;
 const float parameters::latent_fusion          = 3.32e5;
 const float parameters::latent_vaporization    = 2.5e6;
+const float parameters::latent_sublimation     = parameters::latent_fusion + parameters::latent_vaporization;
 const float parameters::molecular_mass_air     = 28.966;
 const float parameters::molecular_mass_water   = 18.016;
 const float parameters::molecular_ratio        = 0.62197;
+//      PARAMETER (EPSI   = 0.6219886)  !CRC #72
 const float parameters::g_bar                  = 9.7976;  //  m/s^2
+//      PARAMETER (GRAV   = 9.8062 )    !NMC Handbook
 const float parameters::omega                  = 7.292e-5;  // s^-1
 ////////////////////////////////////////////
 //  Earth Orbital parameters
@@ -128,31 +132,21 @@ const float parameters::anomalistic_year = 365.259635;
 #define MAX_ICE  128
 
 #endif
-// Parameters taken from old ice model physical.inc, 1994
-// Future: incorporate above.
 //C     Parameters known to high precision
-//      PARAMETER (CPAIR  = 1004.6)     !NMC Handbook
 //      PARAMETER (KAPPA  = 2. / 7.)
-//      PARAMETER (RGAS   = 8.31436E3 / 28.964)
-//      PARAMETER (EPSI   = 0.6219886)  !CRC #72
-//      PARAMETER (GRAV   = 9.8062 )    !NMC Handbook
-//      PARAMETER (OMEGA  = 7.2921E-5)  !NMC Handbook
 //      PARAMETER (TMELT  = 273.16)     !NMC Handbook
-//      PARAMETER (VAPL   = 2.5008E6 )  !Gill 0C
-//      PARAMETER (SUBL   = 2.83459E6)  !Gill 0C
-//      PARAMETER (SIGMA  = 5.67051E-8 )   !Stefan-Boltzmann constant
-//      PARAMETER (LFUSE  = SUBL-VAPL)
 //      PARAMETER (F0     = 2.*OMEGA)
 //
 //C     Parameters constrained, but not high precision
 //      PARAMETER (VONKAR = 0.4)
+
 //      PARAMETER (RHOICE = 9.1E2)
 //      PARAMETER (RHOSNO = 3.3E2)
+//      PARAMETER (RHOWAT = 1.028E3)
+
 //      PARAMETER (CON    = 2.1656)  ! Thermal Conductivity of ice
 //      PARAMETER (CONSN  = 0.31)    ! Thermal Conductivity of snow
 //      PARAMETER (TFREZ  = -1.84)   ! Tf for water at 34.5 psu, Gill
 //      PARAMETER (CC     = 4.217E6) ! Specific heat of pure water, Gill
-//      PARAMETER (CLO    = LFUSE*RHOICE)
-//      PARAMETER (CLB    = 0.9*LFUSE*RHOICE)
+
 //      PARAMETER (RHOAIR = 1.29)
-//      PARAMETER (RHOWAT = 1.028E3)

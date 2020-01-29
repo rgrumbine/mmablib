@@ -1,19 +1,19 @@
       SUBROUTINE ssanaly(dist1, dir1, dist2, dir2, npts, ia, r2, vcor)
-C     Conduct simple analyses of displacement fields
-C     1- correlation between 1 and 2 displacements
-C     2  index of agreement
-C     3  vector correlation.
-C     Robert Grumbine 21 April 1994.
-C     Revised for generality in working with buoys as well as forecast models.
-C     Robert Grumbine 10 April 1995.
-C     Variant ssanaly derived from sanaly for use with a single vector.
-C     Robert Grumbine 10 April 1995.
+!     Conduct simple analyses of displacement fields
+!     1- correlation between 1 and 2 displacements
+!     2  index of agreement
+!     3  vector correlation.
+!     Robert Grumbine 21 April 1994.
+!     Revised for generality in working with buoys as well as forecast models.
+!     Robert Grumbine 10 April 1995.
+!     Variant ssanaly derived from sanaly for use with a single vector.
+!     Robert Grumbine 10 April 1995.
 
       IMPLICIT none
 
       INTEGER npts, scorefile
 
-C     Parameters for reading data in
+!     Parameters for reading data in
       INTEGER nmax
       PARAMETER (nmax = 400*1024)
       REAL dir1(npts), dist1(npts)

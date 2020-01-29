@@ -1104,6 +1104,67 @@ mrf1deg<T>::mrf1deg(void) {
   this->cyclicy = false;
 }
 
+template<class T>
+class gfs_half : public llgrid<T> {
+  public:
+   gfs_half(void); /* Construction creator */
+   ~gfs_half(void) { };
+   gfs_half(gfs_half<T>&);
+   gfs_half<T> & operator=(gfs_half<T> &);
+};
+template<class T>
+gfs_half<T> & gfs_half<T>::operator=(gfs_half<T> &x) {
+  int loc;
+  this->nx = 360*2;
+  this->ny = 180*2+1;
+  this->cyclicx = (fabs(this->nx * this->dlon) >= 360.0);
+  this->cyclicy = false;
+  this->grid = new T[this->nx*this->ny];
+  if (this->grid == (T *) NULL) { cout << "Failed to new in gfs_half()\n"; }
+  this->dlat = -1.0/2;
+  this->dlon = 1.0/2;
+  this->firstlat = 90.0;
+  this->firstlon =  0.0;
+  this->pds.set_gridid(255);
+//Future: copy the pds
+  for (loc = 0; loc < this->ny*this->nx; loc++) {
+     this->grid[loc] = x[loc];
+  }
+  return *this;
+}
+template<class T>
+gfs_half<T>::gfs_half(gfs_half<T> &x) {
+  int loc;
+  this->nx = 360*2;
+  this->ny = 180*2+1;
+  this->grid = new T[this->nx*this->ny];
+  if (this->grid == (T *) NULL) { cout << "Failed to new in gfs_half()\n"; }
+  this->dlat = -1.0/2;
+  this->dlon = 1.0/2;
+  this->firstlat = 90.0;
+  this->firstlon =  0.0;
+  this->pds.set_gridid(255);
+//Future: copy the pds
+  for (loc = 0; loc < this->ny*this->nx; loc++) {
+     this->grid[loc] = x[loc];
+  }
+  this->cyclicx = (fabs(this->nx * this->dlon) >= 360.0);
+  this->cyclicy = false;
+}
+template<class T>
+gfs_half<T>::gfs_half(void) {
+  this->nx = 360*2;
+  this->ny = 180*2+1;
+  this->grid = new T[this->nx*this->ny];
+  if (this->grid == (T *) NULL) { cout << "Failed to new in gfs_half()\n"; }
+  this->dlat = -1.0/2;
+  this->dlon = 1.0/2;
+  this->firstlat = 90.0;
+  this->firstlon =  0.0;
+  this->pds.set_gridid(255);
+  this->cyclicx = (fabs(this->nx * this->dlon) >= 360.0);
+  this->cyclicy = false;
+}
 
 template<class T>
 class gfs_quarter : public llgrid<T> {

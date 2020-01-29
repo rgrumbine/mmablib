@@ -193,32 +193,15 @@ void point3<T>::normalize(void) {
 //Constructors
 template <class T>
 point3<T>::point3(const T x): i(x),j(x),k(x) {}
-//point3<T>::point3(const T x) {
-//  i = x; j = x; k = x;
-//  //local = (point3<T>*) NULL;
-//}
 
 template <class T>
 point3<T>::point3(const T x, const T y): i(x), j(y), k(0) {}
-//point3<T>::point3(const T x, const T y) {
-//  i = x; j = y; k = 0;
-//  //local = (point3<T>*) NULL;
-//}
 
 template <class T>
 point3<T>::point3(const T x, const T y, const T z): i(x),j(y),k(x) {}
-//point3<T>::point3(const T x, const T y, const T z) {
-//  i = x; j = y; k = z;
-//  //local = (point3<T>*) NULL;
-//}
 
 template <class T>
 point3<T>::point3(const point3<T> &x): i(x.i), j(x.j), k(x.k) {}
-//point3<T>::point3(const point3<T> &x) { 
-//  i = x.i; j = x.j; k = x.k; 
-//  //local = (point3<T> *) NULL; 
-//  return; 
-//}
 
 /////////////////////////////////////////////////
 class fijpt : public point3<float> {

@@ -161,17 +161,6 @@ grid2<T>::grid2(void): local((grid2<T> *) NULL)  {
   #endif
 }
 
-//template<class T>
-//grid2<T>::grid2(void) {
-//  this->grid = (T *) NULL;
-//  local = (grid2<T> *) NULL;
-//  this->nx = 0;
-//  this->ny = 0;
-//  #ifdef VERBOSE
-//    cout << "Leaving grid2::grid2(void)\n";
-//  #endif
-//}
-
 template<class T>
 grid2<T>::grid2(int n1, int n2): local((grid2<T> *) NULL)  {
   if (this->nx == 0 && this->ny == 0) {
@@ -184,22 +173,6 @@ grid2<T>::grid2(int n1, int n2): local((grid2<T> *) NULL)  {
      //what we want, but may look a little odd
   }
 }
-
-//member template<class T>
-//member grid2<T>::grid2(int n1, int n2) {
-//member   if (this->nx == 0 && this->ny == 0) {
-//member   #ifdef VERBOSE
-//member     cout <<"Calling grid2_base resizer from grid2\n"; fflush(stdout);
-//member   #endif
-//member     grid2_base<T>::resize(n1, n2); //Note that this is actually invoking 
-//member                                    //the grid2_base constructor, which is 
-//member                                    //what we want, but may look a little odd
-//member   }
-//member   #ifdef VERBOSE
-//member     printf("In grid2_math, nx ny = %d %d\n",this->nx, this->ny);
-//member   #endif
-//member   //local = (grid2<T> *) NULL;
-//member }
 
 template<class T>
 grid2<T>::~grid2() {
@@ -711,9 +684,6 @@ grid2<T>& grid2<T>::laplace() {
        indexim = index - 1;
        indexjm = index - this->nx;
 
-//       local->grid[index] = (T)( (double) grid[indexip] + 
-//               (double) grid[indexjp] + (double) grid[indexim] + 
-//               (double) grid[indexjm] - (double) grid[index]*4.);
        local->grid[index] = (T)(  this->grid[indexip] + 
                 this->grid[indexjp] +  this->grid[indexim] + 
                 this->grid[indexjm] -  this->grid[index]*4.);
@@ -767,8 +737,6 @@ grid2<T>& grid2<T>::gradsq( ) {
        indexim = index - 1;
        indexjm = index - this->nx;
 
-//       local->grid[index] = (T) (pow( (grid[indexip] - grid[indexim])/2 , 2) +
-//                          pow( (grid[indexjp] - grid[indexjm])/2 , 2) );
        local->grid[index] = (T)
    .25*(this->grid[indexip] - this->grid[indexim])*(this->grid[indexip] - this->grid[indexim]) +
    .25*(this->grid[indexjp] - this->grid[indexjm])*(this->grid[indexjp] - this->grid[indexjm]) ; 
@@ -793,8 +761,6 @@ void grid2<T>::gradsq(grid2<T> &grad) {
        indexim = index - 1;
        indexjm = index - this->nx;
 
-//       grad.grid[index] = (T) (pow( (grid[indexip] - grid[indexim])/2 , 2) +
-//                          pow( (grid[indexjp] - grid[indexjm])/2 , 2) );
        grad.grid[index] = (T)
    .25*(this->grid[indexip] - this->grid[indexim])*(this->grid[indexip] - this->grid[indexim]) +
    .25*(this->grid[indexjp] - this->grid[indexjm])*(this->grid[indexjp] - this->grid[indexjm]) ; 
@@ -954,93 +920,10 @@ grid2<T>& grid2<T>::operator*=(const T x) {
 
 
 //Simple binary operators
-// These should be avoided due to issues of their return variables.  RG  4 Feb 2009
-//template <class T>
-//grid2<T> &grid2<T>::operator+(const grid2<T> & x) {
-//  int j;
-//  
-//  if (local != (grid2<T> *) NULL) {
-//    cout << "Clearing local in grid2::operator+grid2 prior to use\n";
-//    cout.flush();
-//    delete local;
-//  }
-//  local = new grid2<T>(this->nx, this->ny);
-// 
-//  if (this->nx != x.nx || this->ny != x.ny ) {
-//    fprintf(stderr, "Error in grid2 +, sizes don't match %d %d vs %d %d\n",
-//                    this->nx, this->ny, x.nx, x.ny);
-//    fflush(stderr);
-//  }
-//  for (j = 0; j < this->ny*this->nx ; j++ ) {
-//      local->grid[j] = this->grid[j] ;
-//      local->grid[j] += x.grid[j] ;
-//  }
-//  return *local;
-//}
-//template <class T>
-//grid2<T>& grid2<T>::operator-(const grid2<T>&  x) {
-//  int j;
-//
-//  if (local != (grid2<T> *) NULL) {
-//    delete local;
-//  }
-//  local = new grid2<T>(this->nx, this->ny);
-//
-//  if (this->nx != x.nx || this->ny != x.ny ) {
-//    fprintf(stderr, "Error in grid2 -, sizes don't match %d %d vs %d %d\n",
-//                     this->nx, this->ny, x.nx, x.ny);
-//    fflush(stderr);
-//  }
-//  for (j = 0; j < this->ny*this->nx ; j++ ) {
-//      local->grid[j] = this->grid[j];
-//      local->grid[j] -= x.grid[j] ;
-//  }
-//  return *local;
-//}
-//template <class T>
-//grid2<T> & grid2<T>::operator*(const grid2<T>& x) {
-//  int j;
-//
-//  if (local != (grid2<T> *) NULL) {
-//    cout << "Clearing local in grid2::operator*grid2 prior to use\n";
-//    cout.flush();
-//    delete local;
-//  }
-//  local = new grid2<T>(this->nx, this->ny);
-//  if (this->nx != x.nx || this->ny != x.ny ) {
-//    fprintf(stderr,"Error in grid2 *, sizes don't match %d %d vs %d %d\n",
-//                   this->nx, this->ny, x.nx, x.ny);
-//    fflush(stderr);
-//  }
-//  for (j = 0; j < this->ny*this->nx; j++ ) {
-//      local->grid[j] = this->grid[j];
-//      local->grid[j] *= x.grid[j] ;
-//  }
-//  return *local;
-//}
-//template <class T>
-//grid2<T> & grid2<T>::operator/(const grid2<T>& x) {
-//  int j;
-//
-//  if (local != (grid2<T> *) NULL) {
-//    cout << "Clearing local in grid2::operator*grid2 prior to use\n";
-//    cout.flush();
-//    delete local;
-//  }
-//  local = new grid2<T>(this->nx, this->ny);
-//  if (this->nx != x.nx || this->ny != x.ny ) {
-//    fprintf(stderr, "Error in grid2 *, sizes don't match %d %d vs %d %d\n",
-//                    this->nx, this->ny, x.nx, x.ny);
-//    fflush(stderr);
-//  }
-//  for (j = 0; j < this->ny*this->nx; j++ ) {
-//      local->grid[j] = this->grid[j];
-//      local->grid[j] /= x.grid[j] ;
-//  }
-//  return *local;
-//}
+// Grid-level should be avoided due to issues of their return variables.  RG  4 Feb 2009
 
-//..with scalars.  These and the other (not the above 4) operations are ok.
+
+//..with scalars.  These and the other operations are ok.
 template <class T>
 grid2<T> & grid2<T>::operator*(const T x) {
   int j;

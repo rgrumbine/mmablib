@@ -11,7 +11,7 @@ class latpt:
     self.lon = float(lon)
 
   def show(self):
-    print str(self.lon),str(self.lat)
+    print (str(self.lon),str(self.lat))
 
   def distance(self, x ):
 ### These are in the const.py
@@ -36,8 +36,9 @@ class latpt:
      R          = const.earth_radius
      direction *= const.rpdg  #beware conventions on direction
      lat1 = self.lat*const.rpdg
+     lon1 = self.lon*const.rpdg
      lat2 = asin( sin(lat1)*cos(distance/R) + cos(lat1)*sin(distance/R)*cos(direction))
-     lon2 = self.lon*const.rpdg + atan2(sin(direction)*sin(distance/R)*cos(lat1), cos(distance/R)-sin(lat1)*sin(lat2))
+     lon2 = lon1 + atan2(sin(direction)*sin(distance/R)*cos(lat1), cos(distance/R)-sin(lat1)*sin(lat2))
      final.lat = lat2 / const.rpdg
      final.lon = lon2 / const.rpdg
      return final

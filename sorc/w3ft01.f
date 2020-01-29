@@ -93,10 +93,8 @@
    20 CONTINUE
         IF (NCYCLK / 2 .NE. 0) JCYCLK = 1
         IF (NCYCLK .NE. 2)     ICYCLK = 1
-!        IF (ICYCLK) 30,70,30
         IF (ICYCLK .NE. 0) THEN
 
-!   30 CONTINUE
         IF (I.EQ.1)      GO TO 40
         IF (I.EQ.(II-1)) GO TO 50
         IP2 = I + 2
@@ -116,11 +114,7 @@
         IP1 = I + 1
       ENDIF
 
-   70 CONTINUE
-!        IF (JCYCLK) 80,120,80
       IF (JCYCLK .NE. 0) THEN
-
-!   80 CONTINUE
         IF (J.EQ.1)      GO TO 90
         IF (J.EQ.(JJ-1)) GO TO 100
         JY(4) = J + 2
@@ -140,6 +134,7 @@
         JY(3) = J + 1
         JY(2) = J
       ENDIF
+!----------------- end NCYCLK > or < 0 work
 
   120 CONTINUE
         IF (LIN.EQ.1) GO TO 160

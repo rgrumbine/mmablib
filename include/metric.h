@@ -289,29 +289,7 @@ metricgrid<T>::metricgrid(grid2<T> &x) {
     this->grid[j] = x[j];
   }
 }
-//template<class T>
-//metricgrid<T> & metricgrid<T>::operator=(metricgrid<T> &x) {
-//  int j;
-//  if (nx == 0 || ny == 0) {
-//    #ifdef VERBOSE
-//       cout << "The 'this' grid is size 0, resizing it \n";
-//       cout << nx << "  " << ny << endl;
-//    #endif
-//    this->resize(x.xpoints(), x.ypoints() );
-//  }
-//  if (nx != x.xpoints() || ny != x.ypoints() ) {
-//    cout <<"unequal grid sizes in metricgrid=\n";
-//    return *this;
-//  }
-//  
-//  #ifdef VERBOSE
-//    cout <<"In metricgrid::operator=\n";
-//  #endif
-//  for (j = 0; j < ny*nx; j++) {
-//    grid[j] = x.grid[j];
-//  }
-//  return *this;
-//}
+
 template<class T>
 metricgrid<T>::metricgrid(metricgrid<T> &x) {
   int j;
@@ -460,13 +438,11 @@ int metricgrid<T>::gribit(int parmno, int depth, int fcst_lead,
   return ierr;
 }
 ///////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////
 //Include the lambert conformal class
 #ifndef LAMBERTH
 #include "lambert.h"
 #endif
 
-///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
 //Include the eta native grids class
 #ifndef ETAH
@@ -474,13 +450,11 @@ int metricgrid<T>::gribit(int parmno, int depth, int fcst_lead,
 #endif
 
 ///////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////
 //Include the gaussian grid class
 #ifndef GAUSSIANH
 #include "gaussian.h"
 #endif
 
-///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
 //Include the psgrids grid class
 #ifndef PSGRIDH
@@ -488,13 +462,11 @@ int metricgrid<T>::gribit(int parmno, int depth, int fcst_lead,
 #endif
 
 ///////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////
 //Include the latlon grid class
 #ifndef LLGRIDH
 #include "llgrid.h"
 #endif
 
-///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
 //Include the mercator grid class
 #ifndef MERCATORH
@@ -502,7 +474,6 @@ int metricgrid<T>::gribit(int parmno, int depth, int fcst_lead,
 #endif
 
 ///////////////////////////////////////////////////////////////////////
-
 //////////////////Utility function:
 float lonpos(float lon) {
   while (lon < 0.) {

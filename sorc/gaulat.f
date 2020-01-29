@@ -25,7 +25,8 @@
    10 PKM2=1.D0
       PKM1=XZ
       ITER=ITER+1
-      IF(ITER.GT.10) GO TO 70
+      IF(ITER.GT.10) RETURN
+
       DO N=2,K
         FN=N
         PK=((2.D0*FN-1.D0)*XZ*PKM1-(FN-1.D0)*PKM2)/FN
@@ -63,9 +64,5 @@ C
         GAUL(N)=ACOS(SNGL(A(N)))*RADI
       ENDDO
 C
-      RETURN
-
-   70 CONTINUE
-!error exit, just not saying anything here
       RETURN
       END

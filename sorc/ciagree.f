@@ -6,7 +6,7 @@ C     Robert Grumbine
       IMPLICIT none
 
       INTEGER n
-      COMPLEX r(n), x(n)
+      COMPLEX r(0:n), x(0:n)
 
       COMPLEX rbar, sr2, sx2, srx, spx
       INTEGER i

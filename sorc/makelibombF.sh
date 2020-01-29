@@ -64,8 +64,6 @@ SHELL=/bin/sh
 .f.a:
 	gfortran -c \$(FFLAGS) \$<
 	ar -ruv  \$@ \$*.o
-	#ncepxlf -c \$(FFLAGS) \$<
-	#ar -ruv -X64 \$@ \$*.o
 	rm -f \$*.o
 
 EOF
@@ -74,7 +72,7 @@ EOF
 #
 export LIB="libombf_4.a"
 #export FFLAGS=" -O3 -qnosave"
-export FFLAGS=" -O3 "
+export FFLAGS=" -O3 -std=f95 "
 make -f make.libomb
 mv $LIB ..
 

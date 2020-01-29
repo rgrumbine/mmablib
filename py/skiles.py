@@ -9,13 +9,12 @@ nmtokm = 1.852
 class skpt:
 
   def __init__(self, lat = 0., lon = 0., wmoid = 0):
-    #print "hello from skpt"
     self.lat = lat
     self.lon = lon
-    self.wmoid  = wmoid
+    self.wmoid  = int(wmoid)
 
   def show(self):
-    print "skiles point ",self.wmoid, self.lon, self.lat
+    print("skiles point ",self.wmoid, self.lon, self.lat)
 
 
 class skfcst:
@@ -28,8 +27,7 @@ class skfcst:
       self.dist = float(dist)
 
    def show(self):
-      print self.wmoid, self.lon, self.lat, self.wdir, self.dist
-
+      print(self.wmoid, self.lon, self.lat, self.wdir, self.dist)
 
 class skiles2_points :
 
@@ -40,9 +38,7 @@ class skiles2_points :
     count = 0
     x     = skpt()
     self.model.append(x)
-    #print "hello -- points"
     self.model[count] = skpt()
-    #print "now for loop"
     count = 1
     for line in fin:
       words = line.split()
@@ -56,20 +52,20 @@ class skiles2_points :
     fin.close()
   
 class skiles2_forecast :
-  days    =  16
-  header  =   5
-  nskiles = 207
+  days    =  int(16)
+  header  =  int( 5)
+  nskiles =  int(207)
 
   def __init__(self, fname):
     self.refpts = skiles2_points()
     self.fcst = []
-    self.npoints = 0
+    self.npoints = int(0)
     
     fin = open(fname)
-    j   = 0
-    day = 0
-    npts_fcst=0
-    blank_count = 0
+    j   = int(0)
+    day = int(0)
+    npts_fcst=int(0)
+    blank_count = int(0)
     
     x = skfcst()
 
@@ -99,8 +95,7 @@ class skiles2_forecast :
 
         if (blank_count == 0):
           self.fcst.append(x)
-          self.fcst[j+day*self.npoints-npts_fcst] = skfcst(
-                   wmoid, lon, lat, wdir, dist) 
+          self.fcst[j+int(day*self.npoints)-npts_fcst] = skfcst(wmoid, lon, lat, wdir, dist)
         elif (blank_count == 2):
           j = -1
           blank_count = 0
@@ -117,16 +112,15 @@ class skiles2_forecast :
 
   def nearest(self, lat, lon, tolerance = 50) :
      dist = 1.e6
-     j = -1
+     j = int(-1)
      ref = latpt(lat,lon)
-     for i in range (0, self.npoints) :
+     for i in range (int(0), int(self.npoints) ) :
        x = latpt(self.fcst[i].lat, self.fcst[i].lon)
        tmp = ref.distance(x)
-       #print "distance = ",i,tmp
        if (tmp < dist):
          dist = tmp
          j = i
-     print "dist ",j,dist,lat,lon
+     #print("dist ",j,dist,lat,lon)
      if (dist < tolerance) :
        return j
      else:

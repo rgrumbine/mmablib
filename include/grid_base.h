@@ -257,32 +257,6 @@ grid2_base<T>::grid2_base (const int x, const int y): nx(x),ny(y),cyclicx(0),cyc
   #endif
 }
 
-
-//template<class T> 
-//grid2_base<T>::grid2_base (void)  {
-//  nx = 0;
-//  ny = 0;
-//  cyclicx=false; cyclicy=false;
-//  grid = (T *) NULL;
-//  local = (grid2_base<T> *) NULL;
-//  #ifdef VERBOSE
-//    cout << "In grid2_base::grid2_base(void) \n";
-//  #endif
-//}
-//template<class T> 
-//grid2_base<T>::grid2_base (const int x, const int y) {
-//  nx = x;
-//  ny = y;
-//  cyclicx=false; cyclicy=false;
-//  grid = new T[nx*ny];
-//  if (grid == (T *) NULL) { cout <<"Failed to new a grid2_base\n";}
-//  local = (grid2_base<T> *) NULL;
-//  #ifdef VERBOSE
-//    printf("Constructed a grid2_base, nx, ny = %d %d\n", nx, ny); fflush(stdout);
-//  #endif
-//  return;
-//}
-
 template<class T>
 grid2_base<T> & grid2_base<T>::operator=(const T val) {
   int j;
