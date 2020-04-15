@@ -61,7 +61,7 @@ SHELL=/bin/sh
 \$(LIB):	\$(LIB)( ${COBJS} )
 
 .c.a:
-	#/usr/vacpp/bin/xlc_r -c -qarch=auto -q64 \$(CFLAGS) \$<
+	echo using C compiler: `which gcc`
 	gcc -c \$(CFLAGS) \$<
 	ar -ruv \$@ \$*.o
 	rm -f \$*.o

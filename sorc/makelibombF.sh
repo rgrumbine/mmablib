@@ -62,6 +62,7 @@ SHELL=/bin/sh
 \$(LIB):	\$(LIB)( ${FOBJS} )
 
 .f.a:
+	echo using Fortran compiler: `which gfortran`
 	gfortran -c \$(FFLAGS) \$<
 	ar -ruv  \$@ \$*.o
 	rm -f \$*.o
