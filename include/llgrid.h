@@ -455,16 +455,75 @@ void gradsq(llgrid<T> &x, llgrid<T> &y, T flag);
 template <class T>
 void gradients(llgrid<T> &x, llgrid<T> &dx, llgrid<T> &dy, llgrid<T> &mag, T flag);
 /////////////////////////////////////////////////////
-//Compute the gradients and magnitude on a spherical earth 
+//Compute divergence on a spherical earth
+template<class T>
+void divergence(llgrid<T> &dx, llgrid<T> &dy, llgrid<T> &div) {
+  ijpt loc, ip, jp, im, jm;
+  float cosphi, cosplus, cosminus, deltax, deltay;
+  latpt ll;
+
+  div.set((float) 0.0);
+  deltax = div.dlon*parameters::a*parameters::radians_per_degree;
+  deltay = abs(div.dlat)*parameters::a*parameters::radians_per_degree;
+
+// d/dx terms:
+  for (loc.j = 0; loc.j < div.ypoints(); loc.j++) {
+    ip.j = loc.j;
+    im.j = loc.j;
+  for (loc.i = 1; loc.i < div.xpoints()-1; loc.i++) {
+    ip.i = loc.i+1;
+    im.i = loc.i-1;
+    ll = div.locate(loc);
+    cosphi = cos(parameters::radians_per_degree * ll.lat);
+    div[loc] = (dx[ip]-dx[im])/cosphi/deltax/cosphi/2.; 
+  }
+  // edge cases:
+  loc.i = 0;
+  ip.i = 1;
+  im.i = div.xpoints()-1;
+    ll = div.locate(loc);
+    cosphi = cos(parameters::radians_per_degree * ll.lat);
+    div[loc] = (dx[ip]-dx[im])/cosphi/deltax/cosphi/2.; 
+  loc.i = div.xpoints()-1;
+  ip.i = 0;
+  im.i = div.xpoints()-2;
+    ll = div.locate(loc);
+    cosphi = cos(parameters::radians_per_degree * ll.lat);
+    div[loc] = (dx[ip]-dx[im])/cosphi/deltax/cosphi/2.; 
+
+  } // end d/dx
+
+// d/dy terms:
+  for (loc.i = 0; loc.i < div.xpoints(); loc.i++) {
+    jp.i = loc.i;
+    jm.i = loc.i;
+  for (loc.j = 1; loc.j < div.ypoints()-1; loc.j++) {
+    jp.j = loc.j + 1;
+    jm.j = loc.j - 1;
+    ll = div.locate(loc);
+    cosphi   = cos(parameters::radians_per_degree * ll.lat);
+    cosplus  = cos(parameters::radians_per_degree * (ll.lat+div.dlat) );
+    cosminus = cos(parameters::radians_per_degree * (ll.lat-div.dlat) );
+    div[loc] += (dy[jp]*cosplus-dy[jm]*cosminus)/cosphi/deltay/2.;
+  }
+  // edge cases:
+  loc.j = 0;
+  loc.j = div.ypoints() - 1;
+  }
+
+  div /= parameters::a;
+    
+  return;
+}
+
+
+//Compute the gradients on a spherical earth 
 template <class T>
-void gradients(llgrid<T> &x, llgrid<T> &dx, llgrid<T> &dy, llgrid<T> &mag, T flag) {
+void gradients(llgrid<T> &x, llgrid<T> &dx, llgrid<T> &dy, T flag) {
   llgrid<T> glat(x.xpoints(), x.ypoints(), x.dlat, x.dlon, x.firstlat, x.firstlon);
   llgrid<T> glon(x.xpoints(), x.ypoints(), x.dlat, x.dlon, x.firstlat, x.firstlon);
   parameters parms;
   ijpt loc, ip, jp, im, jm;
-  double fred;
-
-  fred = M_PI/180.0;
 
   glat.set(0.);
   glon.set(0.);
@@ -484,15 +543,97 @@ void gradients(llgrid<T> &x, llgrid<T> &dx, llgrid<T> &dy, llgrid<T> &mag, T fla
     }
 
     if (x[ip] != flag && x[im] != flag) {
-      glon[loc] = (x[ip] - x[im]) / cos((x.firstlat+loc.j*x.dlat)*fred);
+      glon[loc] = (x[ip] - x[im]) / cos((x.firstlat+loc.j*x.dlat)*parameters::radians_per_degree);
+    }
+    else {
+      glon[loc] = 0;
+    }
+  }
+  loc.i = 0;
+    jp = loc; jp.j += 1;
+    jm = loc; jm.j -= 1;
+    ip = loc; ip.i += 1;
+    im = loc; im.i = x.xpoints() -1;
+
+    if (x[jp] != flag && x[jm] != flag) {
+      glat[loc] = x[jp] - x[jm];
+    }
+    else {
+      glat[loc] = 0;
+    }
+
+    if (x[ip] != flag && x[im] != flag) {
+      glon[loc] = (x[ip] - x[im]) / cos((x.firstlat+loc.j*x.dlat)*parameters::radians_per_degree);
+    }
+    else {
+      glon[loc] = 0;
+    }
+
+  loc.i = x.xpoints() - 1;
+    jp = loc; jp.j += 1;
+    jm = loc; jm.j -= 1;
+    ip = loc; ip.i = 0;
+    im = loc; im.i -= 1;
+
+    if (x[jp] != flag && x[jm] != flag) {
+      glat[loc] = x[jp] - x[jm];
+    }
+    else {
+      glat[loc] = 0;
+    }
+
+    if (x[ip] != flag && x[im] != flag) {
+      glon[loc] = (x[ip] - x[im]) / cos((x.firstlat+loc.j*x.dlat)*parameters::radians_per_degree);
+    }
+    else {
+      glon[loc] = 0;
+    }
+
+  }
+
+  glat /= (parms.a*2.*fabs(x.dlat)*parameters::radians_per_degree);
+  glon /= (parms.a*2.*fabs(x.dlon)*parameters::radians_per_degree);
+  dx = glon;
+  dy = glat;
+
+  return;
+}
+
+//Compute the gradients and magnitude on a spherical earth 
+template <class T>
+void gradients(llgrid<T> &x, llgrid<T> &dx, llgrid<T> &dy, llgrid<T> &mag, T flag) {
+  llgrid<T> glat(x.xpoints(), x.ypoints(), x.dlat, x.dlon, x.firstlat, x.firstlon);
+  llgrid<T> glon(x.xpoints(), x.ypoints(), x.dlat, x.dlon, x.firstlat, x.firstlon);
+  parameters parms;
+  ijpt loc, ip, jp, im, jm;
+
+  glat.set(0.);
+  glon.set(0.);
+
+  for (loc.j = 1; loc.j < x.ypoints() - 1; loc.j++) {
+  for (loc.i = 1; loc.i < x.xpoints() - 1; loc.i++) {
+    jp = loc; jp.j += 1;
+    jm = loc; jm.j -= 1;
+    ip = loc; ip.i += 1;
+    im = loc; im.i -= 1;
+
+    if (x[jp] != flag && x[jm] != flag) {
+      glat[loc] = x[jp] - x[jm];
+    }
+    else {
+      glat[loc] = 0;
+    }
+
+    if (x[ip] != flag && x[im] != flag) {
+      glon[loc] = (x[ip] - x[im]) / cos((x.firstlat+loc.j*x.dlat)*parameters::radians_per_degree);
     }
     else {
       glon[loc] = 0;
     }
   }
   }
-  glat /= (parms.a*2.*x.dlat*fred);
-  glon /= (parms.a*2.*x.dlon*fred);
+  glat /= (parms.a*2.*x.dlat*parameters::radians_per_degree);
+  glon /= (parms.a*2.*x.dlon*parameters::radians_per_degree);
 
   dx = glon;
   dy = glat;

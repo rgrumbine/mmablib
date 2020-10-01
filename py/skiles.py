@@ -31,7 +31,7 @@ class skfcst:
 
 class skiles2_points :
 
-  def __init__(self, fname='forecast.points'):
+  def __init__(self, fname='seaice_forecast.points'):
     self.model = []
     #
     fin = open(fname)

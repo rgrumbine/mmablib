@@ -249,7 +249,6 @@ float lambert<T>::firstlon(void) {
   ll = this->locate(loc);
   return ll.lon;
 }
-
 template <class T>
 class gllamb : public lambert<T> {
   public :
@@ -267,6 +266,40 @@ gllamb<T>::gllamb(void) {
   this->reflat = 45.0; 
   this->dx = 1.e3;
   this->dy = 1.e3;
+  this->h  = 1;
+
+  this->grid = new T[this->nx*this->ny];
+
+//Derived parameters:
+  double dpr = parameters::degrees_per_radian;
+  this->an = sin(this->h*this->reflat/dpr);
+  this->de = this->a * cos(this->reflat/dpr)*
+            pow(tan( (this->h*this->reflat + 90.)/2. /dpr), this->an) / this->an;
+  this->dr = this->de / pow(tan( (this->h*this->lat1 + 90.)/2. /dpr), this->an);
+  this->dlon1 = (this->lon1 - this->orient);
+  this->x0 =  - this->h*sin(this->an*this->dlon1 /dpr) * this->dr / this->dx;
+  this->y0 =  + cos(this->an*this->dlon1 /dpr ) * this->dr / this->dy;
+  this->antr = 1./2./this->an;
+  this->de2 = this->de*this->de;
+}
+
+template <class T>
+class ndfd : public lambert<T> {
+  public :
+    ndfd(void);
+};
+template <class T>
+ndfd<T>::ndfd(void) {
+  this->a = parameters::a; // value from IPLIB, spherical earth
+  
+  this->nx = 2345;
+  this->ny = 1597;
+  this->lat1   = 19.229;
+  this->lon1   = 233.723448 - 360.;
+  this->orient =  -95; 
+  this->reflat = 25.0; 
+  this->dx = 2539.703;
+  this->dy = 2539.703;
   this->h  = 1;
 
   this->grid = new T[this->nx*this->ny];
