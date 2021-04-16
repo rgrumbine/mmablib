@@ -159,8 +159,8 @@
         LON1=NINT(180.E3/ACOS(-1.) * XLON1)
         IRESFL=0
         IGDS09=NINT(ORTRU*1.E3)
-        IGDS10=DELX  
-        IGDS11=DELY
+        IGDS10=NINT(DELX) 
+        IGDS11=NINT(DELY)
         IF( NINT(PROJ).EQ.1  ) IGDS12=0        ! NORTH POLAR PROJ
         IF( NINT(PROJ).EQ.-1 ) IGDS12=128    ! SOUTH POLAT PROJ
         ISCAN=64
@@ -172,8 +172,8 @@
         IRESFL=0
         IGDS09=NINT(180.E3/ACOS(-1.) * XLAT2)
         IGDS10=NINT(180.E3/ACOS(-1.) * XLON2)
-        IGDS11=DELX
-        IGDS12=DELY
+        IGDS11=NINT(DELX)
+        IGDS12=NINT(DELY)
         IGDS13=NINT(ORTRU*1.E3)
         ISCAN=64
         IGDS14=ISCAN
