@@ -10,7 +10,7 @@
       REAL r1, r2, r3
       REAL ss1, ss2
       REAL mse1, mse2, mse3
-      REAL correl, sumx, sumx2, sumxy
+      REAL correl, sumx2
 
       a = persist - obsd
       b = fcst    - obsd
