@@ -11,7 +11,7 @@
 
       IMPLICIT none
 
-      INTEGER npts, scorefile
+      INTEGER npts
 
 !     Parameters for reading data in
       INTEGER nmax
