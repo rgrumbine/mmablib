@@ -60,9 +60,11 @@ SHELL=/bin/sh
 
 \$(LIB):	\$(LIB)( ${COBJS} )
 
+#cc is an alias on wcoss2 systems
+
 .c.a:
-	echo using C compiler: `which gcc`
-	gcc -c \$(CFLAGS) \$<
+	echo using C compiler: `which cc`
+	cc -c \$(CFLAGS) \$<
 	ar -ruv \$@ \$*.o
 	rm -f \$*.o
 

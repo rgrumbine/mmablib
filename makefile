@@ -1,6 +1,8 @@
 #Robert Grumbine
 # 1998
 
+export FC=ifort
+
 all : libombf_4.a libombc_4.a
 
 libombc_4.a :
