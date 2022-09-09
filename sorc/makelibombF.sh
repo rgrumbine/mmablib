@@ -62,8 +62,8 @@ SHELL=/bin/sh
 \$(LIB):	\$(LIB)( ${FOBJS} )
 
 .f.a:
-	echo using Fortran compiler: `which gfortran`
-	gfortran -c \$(FFLAGS) \$<
+	echo using Fortran compiler: `which ftn`
+	ftn -c \$(FFLAGS) \$<
 	ar -ruv  \$@ \$*.o
 	rm -f \$*.o
 
@@ -73,7 +73,7 @@ EOF
 #
 export LIB="libombf_4.a"
 #export FFLAGS=" -O3 -qnosave"
-export FFLAGS=" -O3 -std=f95 "
+export FFLAGS=" -O3 "
 make -f make.libomb
 mv $LIB ..
 
