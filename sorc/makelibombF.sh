@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 ###############################################################
 #
 #   AUTHOR:    Vuong - W/NP11
@@ -28,6 +28,14 @@
 
 
 cd sorc
+echo which gfortran `which gfortran`
+echo which ftn: `which ftn`
+alias ftn=gfortran
+echo which ftn: `which ftn`
+if [ -z `which ftn` ] ; then
+  echo could not find a fortran compiler
+  exit 1
+fi
 
 if [ -f mapxy.c ]
 then
@@ -77,7 +85,7 @@ export FFLAGS=" -O3 "
 make -f make.libomb
 mv $LIB ..
 
-rm -f make.libomb
+#rm -f make.libomb
 rm -f *.o
 
 if [ -f mapxy.c2 ]
