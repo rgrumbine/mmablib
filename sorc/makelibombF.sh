@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 ###############################################################
 #
 #   AUTHOR:    Vuong - W/NP11
@@ -28,14 +28,6 @@
 
 
 cd sorc
-echo which gfortran `which gfortran`
-echo which ftn: `which ftn`
-alias ftn=gfortran
-echo which ftn: `which ftn`
-if [ -z `which ftn` ] ; then
-  echo could not find a fortran compiler
-  exit 1
-fi
 
 if [ -f mapxy.c ]
 then
@@ -70,8 +62,8 @@ SHELL=/bin/sh
 \$(LIB):	\$(LIB)( ${FOBJS} )
 
 .f.a:
-	echo using Fortran compiler: `which ftn`
-	ftn -c \$(FFLAGS) \$<
+	echo using Fortran compiler: `which $FC`
+	$FC -c \$(FFLAGS) \$<
 	ar -ruv  \$@ \$*.o
 	rm -f \$*.o
 
@@ -85,7 +77,7 @@ export FFLAGS=" -O3 "
 make -f make.libomb
 mv $LIB ..
 
-#rm -f make.libomb
+rm -f make.libomb
 rm -f *.o
 
 if [ -f mapxy.c2 ]
