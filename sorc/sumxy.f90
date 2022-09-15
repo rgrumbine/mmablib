@@ -1,7 +1,7 @@
       FUNCTION sumxy(x, y, n)
-C     Function to compute the sum of the product of two vectors.
-C       Use double precision summation, but return a single precision answer.  
-C     Robert Grumbine 12/09/1993.
+!     Function to compute the sum of the product of two vectors.
+!       Use double precision summation, but return a single precision answer.  
+!     Robert Grumbine 12/09/1993.
 
       IMPLICIT none
 

@@ -1,6 +1,6 @@
       SUBROUTINE fit(x, y, n, a, b, r)
-C     Compute the best fit line (y = a + bx) and its correlation to obs
-C     Robert Grumbine 15 December 1994
+!     Compute the best fit line (y = a + bx) and its correlation to obs
+!     Robert Grumbine 15 December 1994
 
       IMPLICIT none
 

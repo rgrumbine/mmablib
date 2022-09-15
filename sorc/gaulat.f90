@@ -55,7 +55,7 @@
         L=K+1-N
         A(L)=-A(N)
       ENDDO
-C
+!
       RADI=180./(4.*ATAN(1.))
       DO N=1,K
         !Drop to single precision A 14 December 2005 because of linux not
@@ -63,6 +63,6 @@ C
         !GAUL(N)=ACOS(A(N))*RADI
         GAUL(N)=ACOS(SNGL(A(N)))*RADI
       ENDDO
-C
+!
       RETURN
       END

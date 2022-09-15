@@ -25,8 +25,8 @@
     
       ia = iagree(dist1, dist2, npts)
    
-      CALL correl(dist1, dist2, npts, r2, 
-     1                      rbar, rbar, rbar, rbar)
+      CALL correl(dist1, dist2, npts, r2, & 
+                            rbar, rbar, rbar, rbar)
 
       CALL vectorize(dist1, dir1, x1, y1, npts)
       CALL vectorize(dist2, dir2, x2, y2, npts)

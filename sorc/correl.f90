@@ -1,9 +1,9 @@
       SUBROUTINE correl(x, y, k, r2, xbar, ybar, sig2x, sig2y)
-C     Compute statistical parameters between two vectors:
-C       mean for each, variance for each, and correlation between.
-C     Uses unbiased estimator of variance.
-C     Robert Grumbine 1/22/94.
-C     LAST MODIFIED 8 April 1994.
+!     Compute statistical parameters between two vectors:
+!       mean for each, variance for each, and correlation between.
+!     Uses unbiased estimator of variance.
+!     Robert Grumbine 1/22/94.
+!     LAST MODIFIED 8 April 1994.
 
       IMPLICIT none
 
@@ -12,8 +12,8 @@ C     LAST MODIFIED 8 April 1994.
       REAL r2, xbar, ybar, sig2x, sig2y
       
       REAL sumx, sumx2, sumxy
-C     The above are functions which compute sums of x, x**2, x*y,
-C       respectively.
+!     The above are functions which compute sums of x, x**2, x*y,
+!       respectively.
       REAL sx, sy, x2, y2, xy
 
       sx = sumx(x, k)
@@ -26,8 +26,8 @@ C       respectively.
       ybar = sy/FLOAT(k)
       sig2x = (FLOAT(k)*x2-sx*sx)/FLOAT(k)/FLOAT(k-1)
       sig2y = (FLOAT(k)*y2-sy*sy)/FLOAT(k)/FLOAT(k-1)
-      r2    = (FLOAT(k)*xy - sx*sy) / 
-     1    SQRT( (FLOAT(k)*x2-sx*sx)*(FLOAT(k)*y2-sy*sy) )
+      r2    = (FLOAT(k)*xy - sx*sy) /  & 
+          SQRT( (FLOAT(k)*x2-sx*sx)*(FLOAT(k)*y2-sy*sy) )
 
       RETURN
       END 

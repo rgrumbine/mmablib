@@ -1,6 +1,5 @@
-first:
-  cd mmablib
-  make
+need modules loaded s.t. ftn is defined.
+WCOSS2: module load craype intel PrgEnv-intel
 
-then ready for building sea ice verification tools.  They are broken 
-  out by variable being scored.  Not all are complete yet.  drift is in best shape.
+Then just 'make'
+
