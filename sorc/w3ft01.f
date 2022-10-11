@@ -54,12 +54,12 @@
 
       REAL    ERAS(4)
       REAL    FLD(II,JJ)
-      REAL    JY(4)
+      INTEGER    JY(4)
       REAL STI, STJ, HI
       REAL FI, FJ, XDELI, XDELJ, XI2TM, XJ2TM
 
-      I     = STI
-      J     = STJ
+      I     = NINT(STI)
+      J     = NINT(STJ)
       FI    = I
       FJ    = J
       XDELI = STI - FI

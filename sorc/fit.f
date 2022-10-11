@@ -5,7 +5,7 @@ C     Robert Grumbine 15 December 1994
       IMPLICIT none
 
       INTEGER n
-      REAL x(n), y(n), corxy
+      REAL x(n), y(n)
       REAL a, b, r
  
       INTEGER i
