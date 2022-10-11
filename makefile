@@ -9,5 +9,9 @@ libombc_4.a :
 libombf_4.a :
 	sorc/makelibombF.sh
 
-#sorc/makelibombF.sh*
-#sorc/makelibombC.sh*
+clean :
+	rm */*.o
+
+distclean : 
+	rm libomb?_4.a
+	rm */*.o
