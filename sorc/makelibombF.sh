@@ -38,9 +38,9 @@ fi
 #     Generate a list of object files that corresponds to the
 #     list of Fortran ( .f ) files in the current directory
 #
-for i in `ls *.f`
+for i in `ls *.f90`
 do
-  fobj=`basename $i .f`
+  fobj=`basename $i .f90`
   FOBJS="$FOBJS ${fobj}.o"
 done
 
@@ -59,13 +59,11 @@ fi
 cat > make.libomb << EOF
 SHELL=/bin/sh
 
-\$(LIB):	\$(LIB)( ${FOBJS} )
-
-.f.a:
-	echo using Fortran compiler: `which ftn`
+%.o: %.f90
 	ftn -c \$(FFLAGS) \$<
-	ar -ruv  \$@ \$*.o
-	rm -f \$*.o
+	
+\$(LIB):  ${FOBJS} 
+	ar -ruv \$@  ${FOBJS}
 
 EOF
 #
@@ -73,6 +71,7 @@ EOF
 #
 export LIB="libombf_4.a"
 #export FFLAGS=" -O3 -qnosave"
+#export FFLAGS=" -O3 -std95"
 export FFLAGS=" -O3 "
 make -f make.libomb
 mv $LIB ..

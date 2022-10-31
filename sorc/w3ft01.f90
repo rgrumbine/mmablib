@@ -170,12 +170,12 @@
 !
         IF (J1.LT.1)  J1 = 1
         IF (J1.GT.JJ) J1 = JJ
-        ERAS(K) = (FLD(IP1,J1) - FLD(I,J1)) * XDELI + FLD(I,J1) +
-     &  (FLD(IM1,J1) - FLD(I,J1) - FLD(IP1,J1) + FLD(IP2,J1)) * XI2TM
+        ERAS(K) = (FLD(IP1,J1) - FLD(I,J1)) * XDELI + FLD(I,J1) + &
+        (FLD(IM1,J1) - FLD(I,J1) - FLD(IP1,J1) + FLD(IP2,J1)) * XI2TM
       ENDDO
 !
-      HI = ERAS(2) + (ERAS(3) - ERAS(2)) * XDELJ + (ERAS(1) -
-     &     ERAS(2) -  ERAS(3) + ERAS(4)) * XJ2TM
+      HI = ERAS(2) + (ERAS(3) - ERAS(2)) * XDELJ + (ERAS(1) - &
+           ERAS(2) -  ERAS(3) + ERAS(4)) * XJ2TM
 !
       RETURN
       END

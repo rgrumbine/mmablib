@@ -1,6 +1,6 @@
-      SUBROUTINE wmoout(BULHEAD, KW, yy, mm, dd, hh, 
-     1                  lwork, linelen, nlines, grib, lgrib, wmounit)
-C     Robert Grumbine 1998
+      SUBROUTINE wmoout(BULHEAD, KW, yy, mm, dd, hh,  &
+                        lwork, linelen, nlines, grib, lgrib, wmounit)
+!     Robert Grumbine 1998
    
       IMPLICIT none
 
@@ -26,8 +26,8 @@ C     Robert Grumbine 1998
 
       CALL MAKWMO(BULHEAD, IDS, HEADER, KW)
       CALL QUEDES(QUEUE, BULHEAD, mlen, KW)
-      CALL TRANST(wmounit, grib, HEADER, QUEUE, mlen, mfin,
-     1            lwork, linelen, nlines)
+      CALL TRANST(wmounit, grib, HEADER, QUEUE, mlen, mfin, &
+                  lwork, linelen, nlines)
 
       RETURN
       END

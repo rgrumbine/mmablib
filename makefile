@@ -9,6 +9,7 @@ libombc_4.a :
 	sorc/makelibombC.sh
 
 libombf_4.a :
+	export ftn=gfortran
 	sorc/makelibombF.sh
 
 distclean : 

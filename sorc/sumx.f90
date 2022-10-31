@@ -1,7 +1,7 @@
       FUNCTION sumx(x,n)
-C     Function to compute the sum of a vector.  Use double precision
-C       summation, but return a single precision answer.  
-C     Robert Grumbine 12/09/1993.
+!     Function to compute the sum of a vector.  Use double precision
+!       summation, but return a single precision answer.  
+!     Robert Grumbine 12/09/1993.
 
       IMPLICIT none
 

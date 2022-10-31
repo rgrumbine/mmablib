@@ -1,6 +1,8 @@
 import numpy as np
 from math import *
 
+#Robert Grumbine
+
 import const
 from latpt import *
 nmtokm = 1.852

@@ -1,10 +1,10 @@
 !-----------------------------------------------------------------------
-      SUBROUTINE GRIBIT(F,LBM,IDRT,IM,JM,MXBIT,COLAT1,
-     &                  ILPDS,IPTV,ICEN,IGEN,IBMS,IPU,ITL,IL1,IL2,
-     &                  IYR,IMO,IDY,IHR,IFTU,IP1,IP2,ITR,INA,INM,IDS,
-     &                  XLAT1,XLON1,XLAT2,XLON2,DELX,DELY,ORTRU,PROJ,
-     &                  GRIDNO,
-     &                  GRIB,LGRIB,IERR)
+      SUBROUTINE GRIBIT(F,LBM,IDRT,IM,JM,MXBIT,COLAT1, &
+                        ILPDS,IPTV,ICEN,IGEN,IBMS,IPU,ITL,IL1,IL2, &
+                        IYR,IMO,IDY,IHR,IFTU,IP1,IP2,ITR,INA,INM,IDS, &
+                        XLAT1,XLON1,XLAT2,XLON2,DELX,DELY,ORTRU,PROJ, &
+                        GRIDNO, &
+                        GRIB,LGRIB,IERR)
 !$$$  SUBPROGRAM DOCUMENTATION BLOCK
 !
 ! SUBPROGRAM:    GRIBIT      CREATE GRIB MESSAGE
@@ -260,8 +260,8 @@
           CALL GETBIT(IBMS,IBS,IDS,NF,IBM,F,FROUND,FMIN,FMAX,NBIT)
         IF(MXBIT.GT.0) NBIT=MIN(NBIT,MXBIT)
       ENDIF
-      CALL W3FI72(0,FROUND,0,NBIT,0,IPDS,PDS,
-     &            1,255,IGDS,0,0,IBM,NF,IBDS,
-     &            NFO,GRIB,LGRIB,IERR)
+      CALL W3FI72(0,FROUND,0,NBIT,0,IPDS,PDS, &
+                  1,255,IGDS,0,0,IBM,NF,IBDS, &
+                  NFO,GRIB,LGRIB,IERR)
       RETURN
       END
