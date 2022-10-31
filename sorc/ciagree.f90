@@ -1,7 +1,7 @@
       COMPLEX FUNCTION ciagree(r, x, n)
-C     Compute the index of agreement between two vectors.
-C     Complex valued variant 11 April 1995
-C     Robert Grumbine
+!     Compute the index of agreement between two vectors.
+!     Complex valued variant 11 April 1995
+!     Robert Grumbine
 
       IMPLICIT none
 

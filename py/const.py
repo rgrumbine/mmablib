@@ -9,6 +9,9 @@ class const:
     earth_radius   = 6371.2   # km -- sphere
     earth_spheroid = 6378.137 # km -- oblate spheroid (WGS84)
     eccen2         = 0.00669438
+
+    #Unit conversion:
+    kmtonm = 1./1.852  #multiply km by this
  
     #degree_area    = earth_radius*earth_radius*4*math.pi*math.pi / 360./180.
     degree_area    = (2.*math.pi*earth_radius / 360.)**2

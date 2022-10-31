@@ -1,7 +1,7 @@
       SUBROUTINE vectorize(mag, angle, x, y, npts)
-C     Given magnitude and angle in degrees, compute x and y equivalents.
-C     Robert Grumbine 5 April 1994.
-C     LAST MODIFIED 8 April 1994.
+!     Given magnitude and angle in degrees, compute x and y equivalents.
+!     Robert Grumbine 5 April 1994.
+!     LAST MODIFIED 8 April 1994.
 
       IMPLICIT none
 

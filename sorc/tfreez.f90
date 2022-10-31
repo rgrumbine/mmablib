@@ -1,8 +1,8 @@
       REAL FUNCTION tfreez(salinity)
-C     Constants taken from Gill, 1982.
-C     Author: Robert Grumbine
-C     LAST MODIFIED: 1 February 2002.
-C          MODIFIED: 21 September 1994.
+!     Constants taken from Gill, 1982.
+!     Author: Robert Grumbine
+!     LAST MODIFIED: 1 February 2002.
+!          MODIFIED: 21 September 1994.
 
       IMPLICIT none
 
@@ -14,7 +14,7 @@ C          MODIFIED: 21 September 1994.
 
       IF (salinity .LT. 0.) THEN
         tfreez = 0.
-CD        PRINT *,'tfreez was passed a negative salinity',salinity
+!D        PRINT *,'tfreez was passed a negative salinity',salinity
         salinity = 1.e-5
       ELSE
         tfreez = salinity*(a1+a2*SQRT(salinity)+a3*salinity)
