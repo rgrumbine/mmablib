@@ -3,3 +3,5 @@ WCOSS2: module load craype intel PrgEnv-intel
 
 Then just 'make'
 
+Robert Grumbine
+31 October 2022
