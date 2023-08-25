@@ -125,6 +125,7 @@ const float parameters::anomalistic_year = 365.259635;
 #define COAST    195 
 #define BAD_DATA 166
 #define WEATHER  177
+#define MAYBE    188
 #define NO_DATA  224
 #define OCEAN      0
 #define MIN_CONC  15
