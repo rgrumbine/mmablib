@@ -1,3 +1,16 @@
+cmake (WCOSS2)
+need cmake >=3.20 (lowest tested)
+module load cmake/3.20.2 (current)
+module load intel
+* edit the CMakeLists.txt CMAKE_INSTALL_PREFIX to your location
+mkdir build
+cd build
+cmake ..
+cmake install
+8 January 2024
+
+
+old make:
 need modules loaded s.t. ftn is defined.
 WCOSS2: module load craype intel PrgEnv-intel
 
