@@ -19,4 +19,3 @@ endif()
 set(CMAKE_INSTALL_PREFIX "/u/robert.grumbine/rgdev/mmablib")
 
 add_subdirectory( sorc )
-
