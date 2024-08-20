@@ -2,21 +2,12 @@ cmake_minimum_required(VERSION 3.20)
 
 project(libomb)
 
-if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  #set(CMAKE_INSTALL_PREFIX "/usr/local")
-  set(CMAKE_INSTALL_PREFIX "/Users/rmg3/sandbox/cmake.demos")
-endif()
-
-if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-  #set(CMAKE_INSTALL_PREFIX "/my/default" CACHE PATH "..." FORCE)
-  set(CMAKE_INSTALL_PREFIX "/Users/rmg3/sandbox/cmake.demos")
-endif()
-
-
 set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -O3")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O3 -ansi ")
 
-set(CMAKE_INSTALL_DIR "mmablib")
+message("mmablib sorc " CMAKE_INSTALL_LIBDIR="${CMAKE_INSTALL_LIBDIR}")
+
+#set(CMAKE_INSTALL_DIR "lib")
 
 list(APPEND c_src
 mapll.c
@@ -54,7 +45,6 @@ wmoout.f90
 add_library(ombf_4 ${fortran_src})
 
 #install(TARGETS ${exe_name} RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
-install(TARGETS ombf_4  RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/mmablib/ ) 
-install(TARGETS ombc_4  RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/mmablib/ ) 
-
+install(TARGETS ombf_4  RUNTIME DESTINATION ${CMAKE_INSTALL_LIBDIR} ) 
+install(TARGETS ombc_4  RUNTIME DESTINATION ${CMAKE_INSTALL_LIBDIR} ) 
 
