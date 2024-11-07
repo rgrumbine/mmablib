@@ -64,8 +64,10 @@ typedef struct {
   char pole;
 } amsr_team2_tables;
 
+/* 
 float nasa_team2(float v19, float h19, float v24, float v37, float h37,
           float v89, float h89, amsr_team2_tables &tab );
+*/
 
 /* define field numbers */
 /* already in amsr.h, which is included above 7 May 2013 */
