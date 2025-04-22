@@ -47,6 +47,7 @@ typedef struct {
 #define AMSR2_T24V   9
 #define AMSR2_T37H  10
 #define AMSR2_T37V  11
+// 89 GHz is in a separate spot type
 #define AMSR2_T89H   0
 #define AMSR2_T89V   1
 
