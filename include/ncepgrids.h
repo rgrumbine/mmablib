@@ -450,6 +450,88 @@ drewry_grid<T>::drewry_grid(void) {
   return ;
 }
 
+//Declare OSI-SAF 10 km psgrids 9 July 2025
+
+template <class T>
+class osisaf_south : public psgrid<T> {
+  public:
+    osisaf_south(void);
+    //osisaf_south(osisaf_south<T> &);
+};
+template<class T>
+osisaf_south<T>::osisaf_south(void) {
+  this->nx = 790;
+  this->ny = 830;
+  this->dx = 10e3;
+  this->dy = 10e3;
+  this->xorig = -this->dx*(395 + .0);
+  this->yorig = -this->dy*(435 - 1.0);
+  this->sgn  = -1.0;
+  this->slat =  70.0;
+  this->slon = -90.0;
+
+// Calculate parameters here for later calculation (recalculate needed when
+//   slat != 60.0
+  double eccen2 = parameters::eccen2;
+  double eccen  = sqrt(eccen2);
+  this->sl = this->slat / parameters::degrees_per_radian;
+  this->cm = cos(this->sl)/ sqrt(1.0-eccen2*sin(this->sl)*sin(this->sl) );
+  this->tnaught  = tan(M_PI_4 - this->sl/2.) /
+           pow(  ((1.0 - eccen*sin(this->sl))/(1.0+eccen*sin(this->sl))), eccen/2.);
+
+  ijpt f;
+  f.i = 0; f.j = 0;
+  this->first_longitude = (this->locate(f)).lon;
+
+
+  this->grid = new T[this->nx*this->ny] ;
+  if (this->grid == (T *) NULL) { cout << "Failed to new in osisaf_south(void)\n";
+    cout.flush(); }
+
+  return;
+}
+
+template <class T>
+class osisaf_north : public psgrid<T> {
+  public:
+    osisaf_north(void);
+    //osisaf_north(osisaf_north<T> &);
+};
+template<class T>
+osisaf_north<T>::osisaf_north(void) {
+  this->nx = 760;
+  this->ny = 1120;
+  this->dx = 10e3;
+  this->dy = 10e3;
+  //-385, -535, 375, 585
+  //this->xorig = this->dx*(-385);
+  //this->yorig = this->dy*(-535);
+  this->xorig = -this->dx*(375 + .5);
+  this->yorig = -this->dy*(585 - .5);
+  this->sgn = 1.0;
+  this->slat = 70.0;
+  this->slon = -225.0;
+
+// Calculate parameters here for later calculation (recalculate needed when
+//   slat != 60.0
+  double eccen2 = parameters::eccen2;
+  double eccen  = sqrt(eccen2);
+  this->sl = this->slat / parameters::degrees_per_radian;
+  this->cm = cos(this->sl)/ sqrt(1.0-eccen2*sin(this->sl)*sin(this->sl) );
+  this->tnaught  = tan(M_PI_4 - this->sl/2.) /
+           pow(  ((1.0 - eccen*sin(this->sl))/(1.0+eccen*sin(this->sl))), eccen/2.);
+
+  ijpt f;
+  f.i = 0; f.j = 0;
+  this->first_longitude = (this->locate(f)).lon;
+
+
+  this->grid = new T[this->nx*this->ny] ;
+  if (this->grid == (T *) NULL) { cout << "Failed to new in osisaf_north(void)\n";
+    cout.flush(); }
+
+  return;
+}
 
 
 
