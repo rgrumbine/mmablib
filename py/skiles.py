@@ -1,9 +1,12 @@
-import numpy as np
-from math import *
-
+"""
+Working with skiles points and drift forecasts
 #Robert Grumbine
+"""
 
-import const
+from math import *
+#import numpy as np
+
+#import const
 from latpt import *
 nmtokm = 1.852
 
@@ -52,7 +55,7 @@ class skiles2_points :
       #self.model[count].show()
       count += 1
     fin.close()
-  
+
 class skiles2_forecast :
   days    =  int(16)
   header  =  int( 5)
@@ -62,13 +65,13 @@ class skiles2_forecast :
     self.refpts = skiles2_points()
     self.fcst = []
     self.npoints = int(0)
-    
+
     fin = open(fname)
     j   = int(0)
     day = int(0)
     npts_fcst=int(0)
     blank_count = int(0)
-    
+
     x = skfcst()
 
     for line in fin:
@@ -85,7 +88,7 @@ class skiles2_forecast :
           dist = float(words[2])*nmtokm
         else:
           if ( ( j > 212 )):
-            if (len(line) < 5): 
+            if (len(line) < 5):
               blank_count += 1
             else:
               words = line.split()
@@ -107,8 +110,8 @@ class skiles2_forecast :
       j += 1
       if (day != 0 and j == 0) :
         self.npoints = len(self.fcst) / day
-# loop back to process next line.  
-#  n.b. if j = 0, we've reached the end of a day and now know how many 
+# loop back to process next line.
+#  n.b. if j = 0, we've reached the end of a day and now know how many
 #    points are in the forecast
 # all 16 days are in the one long vector
 
@@ -125,5 +128,5 @@ class skiles2_forecast :
      #print("dist ",j,dist,lat,lon)
      if (dist < tolerance) :
        return j
-     else:
-       return -1
+     
+     return -1

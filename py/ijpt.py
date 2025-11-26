@@ -1,15 +1,23 @@
+"""
 #working with ij points, i.e., indices to arrays
 #  warning: this are fortran-sense indices, i is most rapidly varying index
+"""
 
 def midpoint(x, y, z):
-#Robert Grumbine
-#1 June 2018
+  """
+  find the midpoint between two ijpoints
+  #Robert Grumbine
+  #1 June 2018
+  """
   z.i = (x.i + y.i)/2.0
   z.j = (x.j + y.j)/2.0
   return z
-  
+
 
 class ijpt:
+  """
+  Class ijpt -- like C++ class ijpt
+  """
 
   def __init__(self,i = 0, j = 0):
     self.i = i
@@ -38,4 +46,3 @@ class ijpt:
     x.i = self.i
     x.j = self.j + 1
     return x
-
