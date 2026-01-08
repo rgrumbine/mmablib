@@ -1,10 +1,11 @@
 """
-#Robert Grumbine
+miscellaneous utility functions
+  parse_8digits, rearth, harcdis, bearing, dms_dpddd 
+#Robert Grumbine 8 January 2026
 """
 
 import datetime
-from math import *
-
+from math import sin, cos, atan2, asin, acos, pi, sqrt
 
 from const import *
 
@@ -16,12 +17,11 @@ def parse_8digits(tag):
   (yy,mm,dd) = (int(int(tmp)/10000),int((int(tmp)%10000)/100),int(tmp)%100)
   tag_out = datetime.date(int(yy), int(mm), int(dd))
   return tag_out
-#------------------------------------------------
 
 #----------------------- for mapping --------------------------
 # approximating ellipsoidal flattening in WGS84
 def rearth(lat):
-  """ return the radius of the earth at the given latitude """
+  """ return the radius of the earth at the given latitude, in km """
   return 6378.137 - 21.385*sin(lat*const.rpdg)
 
 #haversine arcdis
@@ -38,6 +38,18 @@ def harcdis(pt1, pt2):
   c = 2.*asin(min(1.,sqrt(a)))
 
   return c*rearth(mlat)
+
+#https://www.movable-type.co.uk/scripts/latlong.html
+def bearing(x1, x2):
+    ''' bearing(x1, x2) -- initial bearing in degrees from point x1 to x2
+                           args are latpts in degrees '''
+    dlon = x2.lon - x1.lon
+    # must change to radians
+    rpdg = pi/180.
+    theta = atan2(sin(dlon*rpdg)*cos(x2.lat*rpdg) ,
+                  cos(x1.lat*rpdg)*sin(x2.lat*rpdg) -
+                  sin(x1.lat*rpdg)*cos(x2.lat*rpdg)*cos(dlon*rpdg) )
+    return theta/rpdg
 
 #--------------------------------------------------------------
 

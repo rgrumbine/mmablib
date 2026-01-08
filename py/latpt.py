@@ -4,7 +4,7 @@ Class latpt -- working with latitude longitude points
 #1 June 2018
 """
 
-from math import *
+from math import sin, cos, asin, acos, atan2
 
 from const import *
 
