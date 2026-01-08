@@ -5,7 +5,7 @@ miscellaneous utility functions
 """
 
 import datetime
-from math import sin, cos, atan2, asin, acos, pi, sqrt
+from math import sin, cos, atan2, asin, pi, sqrt
 
 from const import *
 
@@ -61,3 +61,22 @@ def dms_dpddd(line):
   lon = float(words[4]) + float(words[5])/60. + float(words[6])/3600.
   lon = -lon
   return (lat, lon)
+
+#--------------------------------------------------------------
+
+def tfreeze(salt):
+  """
+  Compute freezing point as a function of salinity
+  """
+  a1 = -0.0575
+  a2 =  1.710523E-3
+  a3 = -2.154996E-4
+
+  if (salt >= 0):
+    tfreez = salt*(a1+a2*sqrt(salt)+a3*salt)
+  else:
+    print("tfreeze negative salinity ",salt)
+    tfreez = 0.0
+
+  return tfreez
+#--------------------------------------------------------------
