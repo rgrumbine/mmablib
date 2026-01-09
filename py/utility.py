@@ -65,9 +65,7 @@ def dms_dpddd(line):
 #--------------------------------------------------------------
 
 def tfreeze(salt):
-  """
-  Compute freezing point as a function of salinity
-  """
+  """ Compute freezing point as a function of salinity """
   a1 = -0.0575
   a2 =  1.710523E-3
   a3 = -2.154996E-4

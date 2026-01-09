@@ -8,8 +8,6 @@ import math
 class const:
     """
     class const to hold a number of constants useful to earth mapping et al.
-    #Robert Grumbine
-    #1 June 2018
     """
 
     rpdg           = math.pi / 180.
