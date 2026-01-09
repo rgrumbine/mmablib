@@ -1,6 +1,6 @@
 """
 miscellaneous utility functions
-  parse_8digits, rearth, harcdis, bearing, dms_dpddd 
+  parse_8digits, rearth, harcdis, bearing, dms_dpddd, tfreeze
 #Robert Grumbine 8 January 2026
 """
 
@@ -15,7 +15,7 @@ def parse_8digits(tag):
   """ Convert an 8 digit int to a datetime.date object """
   tmp = int(tag)
   (yy,mm,dd) = (int(int(tmp)/10000),int((int(tmp)%10000)/100),int(tmp)%100)
-  tag_out = datetime.date(int(yy), int(mm), int(dd))
+  tag_out = datetime.datetime(int(yy), int(mm), int(dd))
   return tag_out
 
 #----------------------- for mapping --------------------------
