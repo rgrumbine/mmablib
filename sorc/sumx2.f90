@@ -15,7 +15,7 @@
       DO i = 1, n
         sum = sum + DBLE(x(i)*x(i))
       ENDDO
-      sumx2 = SNGL(sum)
+      sumx2 = REAL(sum)
 
       RETURN
       END

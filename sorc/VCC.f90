@@ -55,9 +55,9 @@
         SY1SQ = SY1SQ + Y1(I)*Y1(I)
         SX1Y1 = SX1Y1 + X1(I)*Y1(I)
       ENDDO
-      VAR1 = (FLOAT(NS) * SX1SQ - SUMX1 * SUMX1) / FLOAT(NS * (NS - 1))
-      VAR2 = (FLOAT(NS) * SY1SQ - SUMY1 * SUMY1) / FLOAT(NS * (NS - 1))
-      COV12 = (FLOAT(NS) * SX1Y1 - SUMX1 * SUMY1) / FLOAT(NS * (NS - 1))
+      VAR1 = (REAL(NS) * SX1SQ - SUMX1 * SUMX1) / REAL(NS * (NS - 1))
+      VAR2 = (REAL(NS) * SY1SQ - SUMY1 * SUMY1) / REAL(NS * (NS - 1))
+      COV12 = (REAL(NS) * SX1Y1 - SUMX1 * SUMY1) / REAL(NS * (NS - 1))
       RETURN
       END
       SUBROUTINE STAT2(X1,Y1,X2,Y2,NS,VAR1,VAR3,COV13)
@@ -77,9 +77,9 @@
         SX2SQ = SX2SQ + X2(I)*X2(I)
         SX1X2 = SX1X2 + X1(I)*X2(I)
       ENDDO
-      VAR1 = (FLOAT(NS) * SX1SQ - SUMX1 * SUMX1) / FLOAT(NS * (NS - 1))
-      VAR3 = (FLOAT(NS) * SX2SQ - SUMX2 * SUMX2) / FLOAT(NS * (NS - 1))
-      COV13 = (FLOAT(NS) * SX1X2 - SUMX1 * SUMX2) / FLOAT(NS * (NS - 1))
+      VAR1 = (REAL(NS) * SX1SQ - SUMX1 * SUMX1) / REAL(NS * (NS - 1))
+      VAR3 = (REAL(NS) * SX2SQ - SUMX2 * SUMX2) / REAL(NS * (NS - 1))
+      COV13 = (REAL(NS) * SX1X2 - SUMX1 * SUMX2) / REAL(NS * (NS - 1))
       RETURN
       END
       SUBROUTINE STAT3(X1,Y1,X2,Y2,NS,VAR1,VAR4,COV14)
@@ -99,9 +99,9 @@
         SY2SQ = SY2SQ + Y2(I)*Y2(I)
         SX1Y2 = SX1Y2 + X1(I)*Y2(I)
       ENDDO
-      VAR1 = (FLOAT(NS) * SX1SQ - SUMX1 * SUMX1) / FLOAT(NS * (NS - 1))
-      VAR4 = (FLOAT(NS) * SY2SQ - SUMY2 * SUMY2) / FLOAT(NS * (NS - 1))
-      COV14 = (FLOAT(NS) * SX1Y2 - SUMX1 * SUMY2) / FLOAT(NS * (NS - 1))
+      VAR1 = (REAL(NS) * SX1SQ - SUMX1 * SUMX1) / REAL(NS * (NS - 1))
+      VAR4 = (REAL(NS) * SY2SQ - SUMY2 * SUMY2) / REAL(NS * (NS - 1))
+      COV14 = (REAL(NS) * SX1Y2 - SUMX1 * SUMY2) / REAL(NS * (NS - 1))
       RETURN
       END
       SUBROUTINE STAT4(X1,Y1,X2,Y2,NS,VAR2,VAR3,COV23)
@@ -121,9 +121,9 @@
         SX2SQ = SX2SQ + X2(I)*X2(I)
         SY1X2 = SY1X2 + Y1(I)*X2(I)
       ENDDO
-      VAR2 = (FLOAT(NS) * SY1SQ - SUMY1 * SUMY1) / FLOAT(NS * (NS - 1))
-      VAR3 = (FLOAT(NS) * SX2SQ - SUMX2 * SUMX2) / FLOAT(NS * (NS - 1))
-      COV23 = (FLOAT(NS) * SY1X2 - SUMY1 * SUMX2) / FLOAT(NS * (NS - 1))
+      VAR2 = (REAL(NS) * SY1SQ - SUMY1 * SUMY1) / REAL(NS * (NS - 1))
+      VAR3 = (REAL(NS) * SX2SQ - SUMX2 * SUMX2) / REAL(NS * (NS - 1))
+      COV23 = (REAL(NS) * SY1X2 - SUMY1 * SUMX2) / REAL(NS * (NS - 1))
       RETURN
       END
       SUBROUTINE STAT5(X1,Y1,X2,Y2,NS,VAR2,VAR4,COV24)
@@ -143,9 +143,9 @@
         SY2SQ = SY2SQ + Y2(I)*Y2(I)
         SY1Y2 = SY1Y2 + Y1(I)*Y2(I)
       ENDDO
-      VAR2 = (FLOAT(NS) * SY1SQ - SUMY1 * SUMY1) / FLOAT(NS * (NS - 1))
-      VAR4 = (FLOAT(NS) * SY2SQ - SUMY2 * SUMY2) / FLOAT(NS * (NS - 1))
-      COV24 = (FLOAT(NS) * SY1Y2 - SUMY1 * SUMY2) / FLOAT(NS * (NS - 1))
+      VAR2 = (REAL(NS) * SY1SQ - SUMY1 * SUMY1) / REAL(NS * (NS - 1))
+      VAR4 = (REAL(NS) * SY2SQ - SUMY2 * SUMY2) / REAL(NS * (NS - 1))
+      COV24 = (REAL(NS) * SY1Y2 - SUMY1 * SUMY2) / REAL(NS * (NS - 1))
       RETURN
       END
       SUBROUTINE STAT6(X1,Y1,X2,Y2,NS,VAR3,VAR4,COV34)
@@ -165,9 +165,9 @@
         SY2SQ = SY2SQ + Y2(I)*Y2(I)
         SX2Y2 = SX2Y2 + X2(I)*Y2(I)
       ENDDO
-      VAR3 = (FLOAT(NS) * SX2SQ - SUMX2 * SUMX2) / FLOAT(NS * (NS - 1))
-      VAR4 = (FLOAT(NS) * SY2SQ - SUMY2 * SUMY2) / FLOAT(NS * (NS - 1))
-      COV34 = (FLOAT(NS) * SX2Y2 - SUMX2 * SUMY2) / FLOAT(NS * (NS - 1))
+      VAR3 = (REAL(NS) * SX2SQ - SUMX2 * SUMX2) / REAL(NS * (NS - 1))
+      VAR4 = (REAL(NS) * SY2SQ - SUMY2 * SUMY2) / REAL(NS * (NS - 1))
+      COV34 = (REAL(NS) * SX2Y2 - SUMX2 * SUMY2) / REAL(NS * (NS - 1))
       RETURN
       END
       SUBROUTINE RSQ(VAR1,VAR2,VAR3,VAR4,COV12,COV13,COV14, &

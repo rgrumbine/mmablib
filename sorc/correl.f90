@@ -22,12 +22,12 @@
       y2 = sumx2(y, k)
       xy = sumxy(x, y, k)
 
-      xbar = sx/FLOAT(k)
-      ybar = sy/FLOAT(k)
-      sig2x = (FLOAT(k)*x2-sx*sx)/FLOAT(k)/FLOAT(k-1)
-      sig2y = (FLOAT(k)*y2-sy*sy)/FLOAT(k)/FLOAT(k-1)
-      r2    = (FLOAT(k)*xy - sx*sy) /  & 
-          SQRT( (FLOAT(k)*x2-sx*sx)*(FLOAT(k)*y2-sy*sy) )
+      xbar = sx/REAL(k)
+      ybar = sy/REAL(k)
+      sig2x = (REAL(k)*x2-sx*sx)/REAL(k)/REAL(k-1)
+      sig2y = (REAL(k)*y2-sy*sy)/REAL(k)/REAL(k-1)
+      r2    = (REAL(k)*xy - sx*sy) /  & 
+          SQRT( (REAL(k)*x2-sx*sx)*(REAL(k)*y2-sy*sy) )
 
       RETURN
       END 

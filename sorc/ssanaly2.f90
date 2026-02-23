@@ -11,28 +11,25 @@
 
       IMPLICIT none
 
-      INTEGER npts
+      INTEGER, intent(in) :: npts
+      REAL, intent(in) :: dir1(npts), dist1(npts)
+      REAL, intent(in) :: dir2(npts), dist2(npts)
+      REAL, intent(out) :: ia, r2, vcor
 
-!     Parameters for reading data in
-      INTEGER nmax
-      PARAMETER (nmax = 400*1024)
-      REAL dir1(npts), dist1(npts)
-      REAL dir2(npts), dist2(npts)
-      REAL x1(nmax), y1(nmax)
-      REAL x2(nmax), y2(nmax)
-
-      REAL ia, r2, vcor, iagree, rbar
+      REAL, allocatable :: x1(:), x2(:), y1(:), y2(:)
+      REAL iagree
+      REAL xbar, ybar, sig2x, sig2y
     
       ia = iagree(dist1, dist2, npts)
    
       CALL correl(dist1, dist2, npts, r2, & 
-                            rbar, rbar, rbar, rbar)
+                            xbar, ybar, sig2x, sig2y)
 
+      ALLOCATE(x1(npts), x2(npts), y1(npts), y2(npts))
       CALL vectorize(dist1, dir1, x1, y1, npts)
       CALL vectorize(dist2, dir2, x2, y2, npts)
-
       CALL vcc(x1, y1, x2, y2, npts, vcor)
-
+      DEALLOCATE(x1, x2, y1, y2)
    
       RETURN
       END

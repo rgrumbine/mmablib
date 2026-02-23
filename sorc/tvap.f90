@@ -6,7 +6,7 @@
 !     A.STOESSEL              MPI, HAMBURG                          1989
 !     Robert Grumbine         NOAA/NWS                              1992
 !  PURPOSE:
-!     -CALCULATION OF SATURATION VAPOR PRESSURE FOR AIR TEMPERATURE
+!     -CALCULATION OF SATURATION VAPOR PRESSURE IN PA FOR AIR TEMPERATURE IN K
 !       (K1=1), OVER ICE (K1=2) AND OVER WATER (K1=3)
 !  INTERFACE:
 !     -T:   TEMPERATURE OF ATMOSPHERE, ICE OR OCEAN
@@ -16,7 +16,6 @@
       REAL T
       INTEGER K1
 
-!      GOTO(1,2,3),K1
       IF (K1 .EQ. 1) THEN
         VAPOR=611.21*EXP((18.729-(MIN(T,300.)-273.15)/227.3)*   &
               (MIN(T,300.)-273.15)/(MAX(T,200.)-273.15+257.87))

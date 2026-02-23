@@ -20,7 +20,7 @@
       DO i = 0, n
         rbar = rbar + r(i)
       ENDDO
-      rbar = rbar / FLOAT (n)
+      rbar = rbar / REAL (n)
 
       DO i = 0, n
           sr2 = sr2 + r(i)*r(i)

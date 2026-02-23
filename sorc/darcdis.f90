@@ -41,15 +41,15 @@
 !     arg introduced 6/3/93 to proof against the special case that
 !       round-off errors in trig produce a value for the argument 
 !       which is out of bounds for the arc-cosine function.  This
-!       should be rare though not totally impossible.
-      arg = DCOS(ab)*DCOS(ac)+DSIN(ab)*DSIN(ac)*DCOS(bc)
+!       should be rare but is not totally impossible.
+      arg = COS(ab)*COS(ac)+SIN(ab)*SIN(ac)*COS(bc)
       IF (arg .GT.  1.0) THEN 
         arg =  1.0
       ENDIF
       IF (arg .LT. -1.0) THEN 
         arg = -1.0
       ENDIF
-      darcdis = DACOS(arg)*rearth
+      darcdis = ACOS(arg)*rearth
 
 !     Bullet-proofing: Verify that distance is less than circumference
 !       of the earth.

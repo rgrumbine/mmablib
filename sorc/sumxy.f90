@@ -16,6 +16,6 @@
         sum = sum + x(i)*y(i)
       ENDDO
 
-      sumxy = SNGL(sum)
+      sumxy = REAL(sum)
       RETURN
       END

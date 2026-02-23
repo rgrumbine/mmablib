@@ -88,9 +88,10 @@
         ICYCLK = 0
         JCYCLK = 0
 ! Fortran 66 Arithmetic IF -- labels for if NCYCLK < 0, = 0, > 0, respectively
-        IF (NCYCLK) 20,120,20
+        !IF (NCYCLK) 20,120,20
+        IF (NCYCLK .NE. 0) THEN
 
-   20 CONTINUE
+   !20 CONTINUE
         IF (NCYCLK / 2 .NE. 0) JCYCLK = 1
         IF (NCYCLK .NE. 2)     ICYCLK = 1
         IF (ICYCLK .NE. 0) THEN
@@ -134,6 +135,8 @@
         JY(3) = J + 1
         JY(2) = J
       ENDIF
+
+      ENDIF !NCYCLK != 0
 !----------------- end NCYCLK > or < 0 work
 
   120 CONTINUE

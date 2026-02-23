@@ -61,7 +61,7 @@
         !Drop to single precision A 14 December 2005 because of linux not
         !  finding proper library when compiling into C
         !GAUL(N)=ACOS(A(N))*RADI
-        GAUL(N)=ACOS(SNGL(A(N)))*RADI
+        GAUL(N)=ACOS(REAL(A(N)))*RADI
       ENDDO
 !
       RETURN

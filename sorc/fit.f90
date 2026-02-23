@@ -26,8 +26,8 @@
         sumy  = sumy  + y(i)
       ENDDO
 
-      xm = sumx / FLOAT(n)
-      ym = sumy / FLOAT(n)
+      xm = sumx / REAL(n)
+      ym = sumy / REAL(n)
 
       b = (sumxy-n*xm*ym)/(sumxx - n*xm*xm)
       a = ym - b*xm
