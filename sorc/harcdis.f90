@@ -1,6 +1,8 @@
 REAL FUNCTION harcdis(lat1, lon1, lat2, lon2)
-  USE constants
+  !USE constants
   IMPLICIT none
+  REAL rpd
+  PARAMETER(rpd = 3.1415626535898/180.)
   REAL lat1, lon1, lat2, lon2
   REAL dlat, dlon, mlat
   REAL a, c
