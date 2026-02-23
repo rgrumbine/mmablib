@@ -233,10 +233,10 @@ void mvector<T>::histogram(mvector<int> &datout, float &res ) {
 template <class T>
 float mvector<T>::complete(T maskval) {
   int i, tot=0;
-  for (i = 0; i < xpoints(); i++) {
-    if (vec[i] != maskval) tot+= 1;
+  for (i = 0; i < this->xpoints(); i++) {
+    if (this->vec[i] != maskval) tot+= 1;
   }
-  return (float) tot / (float) xpoints();
+  return (float) tot / (float) this->xpoints();
 }
 template <class T>
 T mvector<T>::average() {
@@ -359,11 +359,11 @@ template <class T>
 mvector<T> & mvector<T>::normalize(T flag) {
   int i;
   double sum = 0.;
-  for (i = 0; i < xpoints(); i++) {
+  for (i = 0; i < this->xpoints(); i++) {
      if (this->operator[](i) != flag) sum += this->operator[](i)*this->operator[](i) ;
   }
   sum = sqrt(sum);
-  for (i = 0; i < xpoints(); i++) {
+  for (i = 0; i < this->xpoints(); i++) {
      if (this->operator[](i) != flag) this->operator[](i) /= sum;
   }
   return *this;
@@ -560,15 +560,15 @@ template <class T>
 bool mvector<T>::operator==(const mvector<T> &y) {
   int j ;
   bool i ;
-  if (nx != y.nx) {
+  if (this->nx != y.nx) {
     cout << "Unequal mvector lengths in mvector equality test!\n";
     cout.flush();
     printf(" %d %d\n", nx, y.nx);
     return false;
   }
-  i = (vec[0] == y.vec[0]);
-  for (j = 1; j < nx; j++) {
-    i = i && ( vec[i] == y.vec[i] );
+  i = (this->vec[0] == y.vec[0]);
+  for (j = 1; j < this->nx; j++) {
+    i = i && ( this->vec[i] == y.vec[i] );
   }
 
   return i;
@@ -579,7 +579,7 @@ void mvector<T>::resize(const int n) {
   #ifdef VERBOSE
     cout << "Entered mvector::resize\n"; cout.flush();
   #endif
-  if (vec != (T * ) NULL) {
+  if (this->vec != (T * ) NULL) {
   #ifdef VERBOSE
     cout << "About to delete an old vec\n"; cout.flush();
   #endif
@@ -589,7 +589,7 @@ void mvector<T>::resize(const int n) {
   #ifdef VERBOSE
     cout << "About to new the new mvector\n"; cout.flush();
   #endif
-  vec = new T[n];
+  this->vec = new T[n];
   return;
 }
 

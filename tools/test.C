@@ -50,16 +50,12 @@
 #include "icessmis.h"
 #include "ssmis.h"
 #include "ssmisclass.h"
-//#include "icessmisu.h"
-//#include "ssmisu.h"
-//#include "ssmisuclass.h"
-// AMSR-e and AMSR2
+//// AMSR-e and AMSR2
 #include "amsr.h"
 #include "amsr2.h"
 #include "amsrice.h"
-// AVHRR
+//// AVHRR
 #include "avhrr.h"
-
 
 
 // Legacies only for reference:

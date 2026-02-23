@@ -31,6 +31,9 @@
 
 // This is used only by cofs, and cofs is legacy since ~2006.
 // Last modification no later than 2006 Jan 27
+#ifndef POINTSH
+  #include "points.h"
+#endif
 
   int xnx, xny, lltnx, lltny;
   ijpt outij;

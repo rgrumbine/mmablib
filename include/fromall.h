@@ -1,6 +1,11 @@
 #ifndef FROMALLH
 
 #define FROMALLH
+
+#ifndef METRICH
+  #include "metric.h"
+#endif
+
 template <>
 void metricgrid<float>::fromall(metricgrid<float> &llt, 
     metricgrid<float> &mask, float landval, float nonval) {

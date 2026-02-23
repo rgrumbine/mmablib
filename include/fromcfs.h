@@ -26,6 +26,10 @@
 // This is a legacy file -- the COFS model was retired from operations in ~2006.
 // Last modification no later than 2004 Apr 29
 
+#ifndef POINTSH
+  #include "points.h"
+#endif
+
   int xnx, xny, lltnx, lltny;
   ijpt outij;
   fijpt locfrom;
