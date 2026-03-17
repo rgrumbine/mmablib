@@ -28,6 +28,8 @@
 
 
 cd sorc
+module load intel
+module load PrgEnv-intel
 
 if [ -f mapxy.c ]
 then
@@ -72,7 +74,7 @@ EOF
 export LIB="libombf_4.a"
 #export FFLAGS=" -O3 -qnosave"
 #export FFLAGS=" -O3 -std95"
-export FFLAGS=" -O3 "
+export FFLAGS=" -O3 -std18"
 make -f make.libomb
 mv $LIB ..
 
