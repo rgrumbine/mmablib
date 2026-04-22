@@ -1,6 +1,6 @@
 """
 miscellaneous utility functions
-  parse_8digits, rearth, harcdis, bearing, dms_dpddd, tfreeze
+  parse_8digits, rearth, harcdis, arcdis, bearing, dms_dpddd, tfreeze
 #Robert Grumbine 8 January 2026
 """
 
@@ -34,6 +34,18 @@ def harcdis(pt1, pt2):
   mlat = (pt1.lat + pt2.lat)/2.
 
   a = sin(dlat*const.rpdg/2)**2 + cos(pt1.lat*const.rpdg)*cos(pt2.lat*const.rpdg)*\
+                                  sin(dlon*const.rpdg/2)**2
+  c = 2.*asin(min(1.,sqrt(a)))
+
+  return c*rearth(mlat)
+
+def arcdis(lat1, lon1, lat2, lon2):
+  """ haversine formula for distance between lat,lon points """
+  dlon = lon2 - lon1
+  dlat = lat2 - lat1
+  mlat = (lat1 + lat2)/2.
+
+  a = sin(dlat*const.rpdg/2)**2 + cos(lat1*const.rpdg)*cos(lat2*const.rpdg)*\
                                   sin(dlon*const.rpdg/2)**2
   c = 2.*asin(min(1.,sqrt(a)))
 
